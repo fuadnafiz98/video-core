@@ -1,24 +1,16 @@
 from scenedetect import detect, ContentDetector
 import cv2
 import click
-from src.utils.gpu_utils import GPUContext, get_processing_mode
 
 
 class ShotCutDetector:
-    def __init__(self, threshold=27.0, min_scene_len=15, use_gpu=True):
+    def __init__(self, threshold=27.0, min_scene_len=15, use_gpu=False):
         self.threshold = threshold
         self.min_scene_len = min_scene_len
-        self.use_gpu = use_gpu
-
-        self.gpu_ctx = GPUContext()
-        self.gpu_available = self.gpu_ctx.is_available() and self.use_gpu
 
     def extract(self, video_path):
         click.echo("")
         click.echo(click.style("INIT", bold=True))
-
-        processing_mode = get_processing_mode() if self.use_gpu else "CPU"
-        click.echo(click.style(f"  MODE: {processing_mode}", dim=True))
 
         cap = cv2.VideoCapture(video_path)
         total_frames = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
@@ -61,5 +53,4 @@ class ShotCutDetector:
             "avg_scene_length": round(avg_scene_length, 2),
             "scene_count": len(scene_list),
             "duration": round(duration, 2),
-            "processing_mode": processing_mode,
         }
