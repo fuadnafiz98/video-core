@@ -9,4 +9,7 @@ wheels/
 # Virtual environments
 .venv
 
-videos/
+videos/*
+!videos/.gitkeep
+results/*
+!results/.gitkeep
