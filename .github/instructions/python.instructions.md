@@ -10,3 +10,4 @@ applyTo: "**/*.py"
 - Don't write unnecessary comments; write clear code instead. Code should be self-explanatory.
 - Use `uv` for formatting code consistently
 - Use `uv` as a package manager for dependencies.
+- Don't update `README.md` or any documentation files manually unless explicitly instructed.

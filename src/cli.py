@@ -82,7 +82,8 @@ def select_video_interactive():
 @click.argument("video_path", type=click.Path(exists=True), required=False)
 @click.option("--threshold", default=27.0, help="Scene detection sensitivity threshold")
 @click.option("--min-scene-len", default=15, help="Minimum scene length in frames")
-def main(video_path, threshold, min_scene_len):
+@click.option("--gpu/--no-gpu", default=True, help="Enable/disable GPU acceleration")
+def main(video_path, threshold, min_scene_len, gpu):
     try:
         click.echo("")
         click.echo(bold("VIDEO CORE ANALYSIS SYSTEM"))
@@ -101,13 +102,16 @@ def main(video_path, threshold, min_scene_len):
         click.echo(f"  {selected_video.name}")
         click.echo("")
 
-        detector = ShotCutDetector(threshold=threshold, min_scene_len=min_scene_len)
-
-        result = detector.extract(str(selected_video))
+        detector = ShotCutDetector(
+            threshold=threshold, min_scene_len=min_scene_len, use_gpu=gpu
+        )
+        shot_result = detector.extract(str(selected_video))
 
         output_data = {
             "video_file": str(selected_video),
-            "features": {"shot_cuts": result},
+            "features": {
+                "shot_cuts": shot_result,
+            },
         }
 
         video_name = selected_video.stem
@@ -121,9 +125,10 @@ def main(video_path, threshold, min_scene_len):
 
         click.echo("")
         click.echo(bold("COMPLETE"))
-        click.echo(f"  CUTS DETECTED: {result['total_cuts']}")
-        click.echo(f"  AVG SCENE: {result['avg_scene_length']}s")
-        click.echo(f"  DURATION: {result['duration']}s")
+        click.echo(f"  CUTS DETECTED: {shot_result['total_cuts']}")
+        click.echo(f"  AVG SCENE: {shot_result['avg_scene_length']}s")
+        click.echo(f"  DURATION: {shot_result['duration']}s")
+        click.echo(f"  MODE: {shot_result.get('processing_mode', 'N/A')}")
         click.echo("")
         click.echo(dim(f"OUTPUT: {output_file}"))
         click.echo("")
