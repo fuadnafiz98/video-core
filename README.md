@@ -19,11 +19,7 @@ Run video analysis in the cloud without local setup.
 
 ### Quick Start
 
-1. Open the notebook in Colab:
-
-   ```
-   https://colab.research.google.com/github/fuadnafiz98/video-core/blob/master/video_core.ipynb
-   ```
+1. [Open the notebook in Colab](https://colab.research.google.com/github/fuadnafiz98/video-core/blob/master/video_core.ipynb)
 
 2. Run all cells or:
    - Clone repo
