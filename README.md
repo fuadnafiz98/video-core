@@ -12,6 +12,7 @@
 - [Usage](#usage)
 - [Google Colab](#google-colab)
 - [Performance](#performance)
+- [Resources](#resources)
 
 ## Google Colab
 
@@ -36,3 +37,8 @@ Run video analysis in the cloud without local setup.
 - Access videos from Google Drive
 
 ## Performance
+
+## Resources
+
+- [https://www.scenedetect.com/docs/latest/](https://www.scenedetect.com/docs/latest/)
+-
