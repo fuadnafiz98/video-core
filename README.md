@@ -67,13 +67,13 @@ This is a experimental video analysis tool built using SceneDetect for detecting
 1. Run the analysis script:
 
    ```bash
-     make run
+    make run
    ```
 
    or
 
    ```bash
-     uv run python -m src.cli
+    uv run python -m src.cli
    ```
 
 ## Google Colab
@@ -103,7 +103,10 @@ Run video analysis in the cloud without local setup.
 
 ## Performance
 
+I have used multiprocessing to speed up the analysis. Performance may vary based on hardware and video length.
+I am continuously working on optimizing the performance further. My future plan is to use GPU acceleration for object detection and OCR tasks to significantly reduce processing time.
+
 ## Resources
 
 - [https://www.scenedetect.com/docs/latest/](https://www.scenedetect.com/docs/latest/)
--
+- [https://docs.ultralytics.com/models/yolo12](https://docs.ultralytics.com/models/yolo12)
