@@ -8,6 +8,7 @@
 
 - [Introduction](#introduction)
 - [Features](#features)
+- [Sample Input and Output](#sample-input-and-output)
 - [Installation](#installation)
 - [Usage](#usage)
 - [Google Colab](#google-colab)
@@ -35,6 +36,13 @@ This is a experimental video analysis tool built using SceneDetect for detecting
 - Person VS Object dominance detection
 
   This module utilizes the YOLOv8 object detection model to analyze video frames and determine the dominance of persons versus other objects within the scenes. It provides insights into the content composition of the video.
+
+## Sample Input and Output
+
+A sample input video and its corresponding output JSON file are provided in the repository for reference.
+
+- Input Video: [videos/sample_video.mp4 🡕](https://github.com/fuadnafiz98/video-core/blob/master/videos/sample_video.mp4)
+- Output JSON: [results/sample-video/output.json 🡕](https://github.com/fuadnafiz98/video-core/blob/master/results/sample-video/output.json)
 
 ## Installation
 
@@ -89,7 +97,7 @@ This is a experimental video analysis tool built using SceneDetect for detecting
 
    It will prompt to select a video from the `videos/` directory and start the analysis.
 
-   The output json files and extracted frames will be saved in the `output/` directory.
+   The output json files and extracted frames will be saved in the `results/` directory.
 
 ## Google Colab
 
