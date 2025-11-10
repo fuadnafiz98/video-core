@@ -21,58 +21,69 @@ This is a experimental video analysis tool built using SceneDetect for detecting
 ## Features
 
 - Shot cut detection
+
+  This module detects scene changes in the video using PySceneDetect's content-aware detection algorithm. It identifies significant transitions between scenes and extracts key frames representing each scene.
+
 - Video Motion Analysis
+
+  This module analyzes motion within the video frames to identify segments with significant movement. It helps in understanding the dynamics of the video content.
+
 - OCR text extraction from video frames
+
+  This module extracts text from video frames using Optical Character Recognition (OCR) techniques. It captures textual information present in the video, which can be useful for various applications such as subtitles, captions, or on-screen text analysis.
+
 - Person VS Object dominance detection
+
+  This module utilizes the YOLOv8 object detection model to analyze video frames and determine the dominance of persons versus other objects within the scenes. It provides insights into the content composition of the video.
 
 ## Installation
 
 - Python 3.13 used
 - uv used for package management
 - Install dependencies:
-  ```console
+  ```bash
   uv install
   ```
 - Install `tesseract-ocr` for OCR functionality:
   - **Ubuntu**:
-    ```console
+    ```bash
     sudo apt-get install tesseract-ocr
     ```
   - **macOS**:
-    ```console
+    ```bash
     brew install tesseract
     ```
 
 ## Usage
 
 1. Clone the repository:
-   ```console
+   ```bash
    git clone https://github.com/fuadnafiz98/video-core.git
    ```
 1. Navigate to the project directory:
-   ```console
+   ```bash
    cd video-core
    ```
 1. Install dependencies:
-   ```console
+   ```bash
    uv install
    ```
 1. Put sample videos in the `videos/` directory.
 1. Activate the virtual environment:
 
-   ```console
+   ```bash
    source .venv/bin/activate
    ```
 
 1. Run the analysis script:
 
-   ```console
+   ```bash
     make run
    ```
 
    or
 
-   ```console
+   ```bash
     uv run python -m src.cli
    ```
 
@@ -86,7 +97,7 @@ Run video analysis in the cloud without local setup.
 
 ### Quick Start
 
-```console
+```bash
   uv run python -m src.cli
 ```
 
