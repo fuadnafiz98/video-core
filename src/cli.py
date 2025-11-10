@@ -6,6 +6,7 @@ from pathlib import Path
 
 from src.extractors.shot_cut_detector import ShotCutDetector
 from src.extractors.motion_analyzer import MotionAnalyzer
+from src.extractors.text_analyzer import TextAnalyzer
 
 VIDEO_EXTENSIONS = {".mp4", ".avi", ".mov", ".mkv", ".flv", ".wmv", ".webm"}
 
@@ -88,8 +89,19 @@ def select_video_interactive():
     "--motion-sample-rate", default=5, help="Motion analysis frame sample rate"
 )
 @click.option("--motion-downscale", default=2, help="Motion analysis downscale factor")
+@click.option("--text-sample-rate", default=2, help="Text analysis frame sample rate")
+@click.option(
+    "--text-downscale-width", default=640, help="Text analysis downscale width"
+)
 def main(
-    video_path, threshold, min_scene_len, gpu, motion_sample_rate, motion_downscale
+    video_path,
+    threshold,
+    min_scene_len,
+    gpu,
+    motion_sample_rate,
+    motion_downscale,
+    text_sample_rate,
+    text_downscale_width,
 ):
     try:
         click.echo("")
@@ -116,18 +128,24 @@ def main(
             sample_rate=motion_sample_rate,
             downscale=motion_downscale,
         )
+        text_analyzer = TextAnalyzer(
+            sample_rate=text_sample_rate,
+            downscale_width=text_downscale_width,
+        )
 
         click.echo(bold("PROCESSING"))
         click.echo("")
 
         shot_result = detector.extract(str(selected_video))
         motion_result = analyzer.extract(str(selected_video))
+        text_result = text_analyzer.extract(str(selected_video))
 
         output_data = {
             "video_file": str(selected_video),
             "features": {
                 "shot_cuts": shot_result,
                 "motion": motion_result,
+                "text": text_result,
             },
         }
 
@@ -147,6 +165,9 @@ def main(
         click.echo(f"  DURATION: {shot_result['duration']}s")
         click.echo(
             f"  MOTION: P90={motion_result['p90_motion']:.2f} ({motion_result['motion_intensity']}) | AVG={motion_result['average_motion']:.2f}"
+        )
+        click.echo(
+            f"  TEXT RATIO: {text_result['text_present_ratio']:.2f} | KEYWORDS: {len(text_result['top_keywords'])}"
         )
         click.echo("")
         click.echo(dim(f"OUTPUT: {output_file}"))
