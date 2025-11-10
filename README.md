@@ -30,49 +30,49 @@ This is a experimental video analysis tool built using SceneDetect for detecting
 - Python 3.13 used
 - uv used for package management
 - Install dependencies:
-  ```bash
+  ```console
   uv install
   ```
 - Install `tesseract-ocr` for OCR functionality:
   - **Ubuntu**:
-    ```bash
+    ```console
     sudo apt-get install tesseract-ocr
     ```
   - **macOS**:
-    ```bash
+    ```console
     brew install tesseract
     ```
 
 ## Usage
 
 1. Clone the repository:
-   ```bash
+   ```console
    git clone https://github.com/fuadnafiz98/video-core.git
    ```
 1. Navigate to the project directory:
-   ```bash
+   ```console
    cd video-core
    ```
 1. Install dependencies:
-   ```bash
+   ```console
    uv install
    ```
 1. Put sample videos in the `videos/` directory.
 1. Activate the virtual environment:
 
-   ```bash
+   ```console
    source .venv/bin/activate
    ```
 
 1. Run the analysis script:
 
-   ```bash
+   ```console
     make run
    ```
 
    or
 
-   ```bash
+   ```console
     uv run python -m src.cli
    ```
 
@@ -86,7 +86,7 @@ Run video analysis in the cloud without local setup.
 
 ### Quick Start
 
-```bash
+```console
   uv run python -m src.cli
 ```
 
