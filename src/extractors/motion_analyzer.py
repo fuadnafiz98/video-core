@@ -23,11 +23,11 @@ class MotionAnalyzer:
 
         self.flow_params = {
             "pyr_scale": 0.5,
-            "levels": 5,
-            "winsize": 21,
-            "iterations": 5,
-            "poly_n": 7,
-            "poly_sigma": 1.5,
+            "levels": 3,
+            "winsize": 13,
+            "iterations": 3,
+            "poly_n": 5,
+            "poly_sigma": 1.1,
             "flags": cv2.OPTFLOW_FARNEBACK_GAUSSIAN,
         }
 

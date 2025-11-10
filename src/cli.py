@@ -7,6 +7,7 @@ from pathlib import Path
 from src.extractors.shot_cut_detector import ShotCutDetector
 from src.extractors.motion_analyzer import MotionAnalyzer
 from src.extractors.text_analyzer import TextAnalyzer
+from src.extractors.object_dominance import ObjectDominanceAnalyzer
 
 VIDEO_EXTENSIONS = {".mp4", ".avi", ".mov", ".mkv", ".flv", ".wmv", ".webm"}
 
@@ -93,6 +94,8 @@ def select_video_interactive():
 @click.option(
     "--text-downscale-width", default=640, help="Text analysis downscale width"
 )
+@click.option("--obj-sample-rate", default=5, help="Object analysis frame sample rate")
+@click.option("--obj-conf", default=0.5, help="Object analysis confidence threshold")
 def main(
     video_path,
     threshold,
@@ -102,6 +105,8 @@ def main(
     motion_downscale,
     text_sample_rate,
     text_downscale_width,
+    obj_sample_rate,
+    obj_conf,
 ):
     try:
         click.echo("")
@@ -132,6 +137,9 @@ def main(
             sample_rate=text_sample_rate,
             downscale_width=text_downscale_width,
         )
+        obj_analyzer = ObjectDominanceAnalyzer(
+            sample_rate=obj_sample_rate, conf_threshold=obj_conf
+        )
 
         click.echo(bold("PROCESSING"))
         click.echo("")
@@ -139,6 +147,7 @@ def main(
         shot_result = detector.extract(str(selected_video))
         motion_result = analyzer.extract(str(selected_video))
         text_result = text_analyzer.extract(str(selected_video))
+        object_result = obj_analyzer.extract(str(selected_video))
 
         output_data = {
             "video_file": str(selected_video),
@@ -146,6 +155,7 @@ def main(
                 "shot_cuts": shot_result,
                 "motion": motion_result,
                 "text": text_result,
+                "object_dominance": object_result,
             },
         }
 
@@ -168,6 +178,9 @@ def main(
         )
         click.echo(
             f"  TEXT RATIO: {text_result['text_present_ratio']:.2f} | KEYWORDS: {len(text_result['top_keywords'])}"
+        )
+        click.echo(
+            f"  PERSON/OBJECT RATIO: {object_result['person_object_ratio']:.2f} (P={object_result['total_persons']} O={object_result['total_objects']})"
         )
         click.echo("")
         click.echo(dim(f"OUTPUT: {output_file}"))

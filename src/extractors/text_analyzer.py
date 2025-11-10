@@ -107,7 +107,7 @@ class TextAnalyzer:
 
         with tqdm(
             total=sampled_count,
-            desc="  OCR Progress",
+            desc="OCR Progress",
             bar_format="  {desc}: {percentage:3.0f}% |{bar}| {n_fmt}/{total_fmt} [{elapsed}<{remaining}]",
         ) as pbar:
             with Pool(processes=self.workers) as pool:

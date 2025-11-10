@@ -11,4 +11,5 @@ dependencies = [
     "pytesseract>=0.3.13",
     "questionary>=2.1.1",
     "scenedetect[opencv]>=0.6.7.1",
+    "ultralytics>=8.3.227",
 ]

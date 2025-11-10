@@ -1,0 +1,119 @@
+{
+  "video_file": "videos/sample-video.mp4",
+  "features": {
+    "shot_cuts": {
+      "total_cuts": 45,
+      "cut_timestamps": [
+        1.27,
+        3.73,
+        5.2,
+        6.02,
+        6.85,
+        7.28,
+        7.72,
+        8.15,
+        8.6,
+        9.62,
+        10.65,
+        11.38,
+        12.88,
+        14.67,
+        15.95,
+        17.7,
+        18.88,
+        20.53,
+        22.02,
+        23.38,
+        24.42,
+        25.75,
+        27.25,
+        28.52,
+        29.45,
+        30.67,
+        32.05,
+        33.67,
+        35.13,
+        36.45,
+        37.9,
+        40.03,
+        42.72,
+        43.75,
+        45.52,
+        46.82,
+        48.68,
+        50.0,
+        51.17,
+        52.47,
+        53.33,
+        54.37,
+        55.57,
+        56.22,
+        57.3
+      ],
+      "avg_scene_length": 1.27,
+      "scene_count": 46,
+      "duration": 58.93
+    },
+    "motion": {
+      "average_motion": 4.960000038146973,
+      "p90_motion": 10.510000228881836,
+      "max_motion": 1432.969970703125,
+      "motion_intensity": "high",
+      "sampled_frames": 708
+    },
+    "text": {
+      "text_present_ratio": 0.95,
+      "text_frames": 1675,
+      "sampled_frames": 1768,
+      "top_keywords": [
+        {
+          "word": "and",
+          "count": 218
+        },
+        {
+          "word": "the",
+          "count": 184
+        },
+        {
+          "word": "this",
+          "count": 178
+        },
+        {
+          "word": "but",
+          "count": 159
+        },
+        {
+          "word": "its",
+          "count": 107
+        },
+        {
+          "word": "plaza",
+          "count": 101
+        },
+        {
+          "word": "kobe",
+          "count": 101
+        },
+        {
+          "word": "weekday",
+          "count": 84
+        },
+        {
+          "word": "were",
+          "count": 84
+        },
+        {
+          "word": "save",
+          "count": 80
+        }
+      ],
+      "processing_time_seconds": 353.45
+    },
+    "object_dominance": {
+      "person_object_ratio": 0.29,
+      "total_persons": 250,
+      "total_objects": 600,
+      "sampled_frames": 708
+    }
+  }
+}

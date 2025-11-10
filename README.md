@@ -76,6 +76,10 @@ This is a experimental video analysis tool built using SceneDetect for detecting
     uv run python -m src.cli
    ```
 
+   It will prompt to select a video from the `videos/` directory and start the analysis.
+
+   The output json files and extracted frames will be saved in the `output/` directory.
+
 ## Google Colab
 
 Run video analysis in the cloud without local setup.
