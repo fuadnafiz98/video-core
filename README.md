@@ -41,8 +41,8 @@ This is a experimental video analysis tool built using SceneDetect for detecting
 
 A sample input video and its corresponding output JSON file are provided in the repository for reference.
 
-- Input Video: [videos/sample_video.mp4 ‘🡕’](https://github.com/fuadnafiz98/video-core/blob/master/videos/sample-video.mp4)
-- Output JSON: [results/sample-video/output.json 🡕](https://github.com/fuadnafiz98/video-core/blob/master/results/sample-video/output.json)
+- Input Video: [videos/sample_video.mp4 `🡕`](https://github.com/fuadnafiz98/video-core/blob/master/videos/sample-video.mp4)
+- Output JSON: [results/sample-video/output.json `🡕`](https://github.com/fuadnafiz98/video-core/blob/master/results/sample-video/output.json)
 
 ## Installation
 
