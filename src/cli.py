@@ -5,6 +5,7 @@ import questionary
 from pathlib import Path
 
 from src.extractors.shot_cut_detector import ShotCutDetector
+from src.extractors.motion_analyzer import MotionAnalyzer
 
 VIDEO_EXTENSIONS = {".mp4", ".avi", ".mov", ".mkv", ".flv", ".wmv", ".webm"}
 
@@ -83,7 +84,13 @@ def select_video_interactive():
 @click.option("--threshold", default=27.0, help="Scene detection sensitivity threshold")
 @click.option("--min-scene-len", default=15, help="Minimum scene length in frames")
 @click.option("--gpu/--no-gpu", default=True, help="Enable/disable GPU acceleration")
-def main(video_path, threshold, min_scene_len, gpu):
+@click.option(
+    "--motion-sample-rate", default=5, help="Motion analysis frame sample rate"
+)
+@click.option("--motion-downscale", default=2, help="Motion analysis downscale factor")
+def main(
+    video_path, threshold, min_scene_len, gpu, motion_sample_rate, motion_downscale
+):
     try:
         click.echo("")
         click.echo(bold("VIDEO CORE ANALYSIS SYSTEM"))
@@ -105,12 +112,22 @@ def main(video_path, threshold, min_scene_len, gpu):
         detector = ShotCutDetector(
             threshold=threshold, min_scene_len=min_scene_len, use_gpu=gpu
         )
+        analyzer = MotionAnalyzer(
+            sample_rate=motion_sample_rate,
+            downscale=motion_downscale,
+        )
+
+        click.echo(bold("PROCESSING"))
+        click.echo("")
+
         shot_result = detector.extract(str(selected_video))
+        motion_result = analyzer.extract(str(selected_video))
 
         output_data = {
             "video_file": str(selected_video),
             "features": {
                 "shot_cuts": shot_result,
+                "motion": motion_result,
             },
         }
 
@@ -128,7 +145,9 @@ def main(video_path, threshold, min_scene_len, gpu):
         click.echo(f"  CUTS DETECTED: {shot_result['total_cuts']}")
         click.echo(f"  AVG SCENE: {shot_result['avg_scene_length']}s")
         click.echo(f"  DURATION: {shot_result['duration']}s")
-        click.echo(f"  MODE: {shot_result.get('processing_mode', 'N/A')}")
+        click.echo(
+            f"  MOTION: P90={motion_result['p90_motion']:.2f} ({motion_result['motion_intensity']}) | AVG={motion_result['average_motion']:.2f}"
+        )
         click.echo("")
         click.echo(dim(f"OUTPUT: {output_file}"))
         click.echo("")

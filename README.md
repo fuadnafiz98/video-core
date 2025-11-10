@@ -25,16 +25,9 @@ Run video analysis in the cloud without local setup.
 2. Run all cells or:
    - Clone repo
    - Install dependencies
-   - Upload video or mount Google Drive
+   - Upload video
    - Run analysis
    - Download results
-
-### Features on Colab
-
-- No local installation required
-- Free GPU acceleration (for future features)
-- Process large videos in the cloud
-- Access videos from Google Drive
 
 ## Performance
 
